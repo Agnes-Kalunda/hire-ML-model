@@ -1,7 +1,7 @@
 # Importing Libraries
 
 import pandas as pd
-
+from sklearn.model_selection import train_test_split
 import numpy as np
 
 dataset = pd.read_csv('hirable.csv')
@@ -57,3 +57,5 @@ for col in degrees:
 X = dataset.drop(['status'], axis=1)
 
 y = dataset.status
+
+X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,random_state=1)

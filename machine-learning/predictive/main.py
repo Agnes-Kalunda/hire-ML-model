@@ -39,3 +39,21 @@ dataset['workex'] = dataset.workex.replace(['Yes', 'No'], [1, 0])
 dataset['status'] = dataset.status.replace(['Placed', 'Not Placed'], [1, 0])
 
 print (dataset)
+
+# Downscalling Method For BSc & MSc grades
+
+def downscale(score):
+
+    return score/10/2
+
+degrees = ['bsc', 'msc']
+
+for col in degrees:
+
+   dataset[col] = downscale(dataset[col])
+
+# Separating into dependent and independent variables
+
+X = dataset.drop(['status'], axis=1)
+
+y = dataset.status

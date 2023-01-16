@@ -36,3 +36,24 @@ class Candidate(BaseModel):
     workex: int
     etest_p: float
     msc: float
+
+#home rote
+
+@app.get("/")
+
+def read_root():
+    return {"data": "Hi! Lets predict your hirablity!"}
+
+#prediction route
+
+@app.post("/prediction/")
+
+async def get_prediction(data: Candidate):
+
+    sample = [[
+        data.gender,
+        data.bsc,
+        data.workex,
+        data.etest_p,
+        data.msc
+    ]]

@@ -42,7 +42,7 @@ dataset['workex'] = dataset.workex.replace(['Yes', 'No'], [1, 0])
 
 dataset['status'] = dataset.status.replace(['Placed', 'Not Placed'], [1, 0])
 
-print (dataset)
+# print (dataset)
 
 # Downscalling Method For BSc & MSc grades
 
@@ -67,7 +67,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,train_size=0.8,random_s
 #fitting the model with random forest model
 
 model = RandomForestClassifier(n_estimators =100)
-model.fir(X_train, y_train)
+model.fit(X_train, y_train)
 
 #prediction and testing
 
@@ -75,6 +75,19 @@ y_pred=model.predict(X_test)
 
 # Report and Accuracy Score
 
-print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
+# print("Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
-print("Classification Report RF:\n",classification_report(y_test,y_pred))
+# print("Classification Report RF:\n",classification_report(y_test,y_pred))
+
+
+#model testing on new data
+#[[ gender  ,  bsc , workex , etest_p  ,  msc , status]]
+#sample 1
+
+sample = np.array([[0, 2.9, 1, 78.50, 3.7 ]])
+model.predict(sample)
+
+#sample2
+
+sample = np.array([[0,2.9,1,78.50,3.7]])
+model.predict(sample)

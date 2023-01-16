@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import pickle
 
 
-app = FastAPI
+app = FastAPI()
 
 origins = [
 
@@ -18,11 +18,10 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-
     allow_origins = origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 #loading model
@@ -46,7 +45,7 @@ def read_root():
 
 #prediction route
 
-@app.post("/prediction/")
+@app.post("/prediction")
 
 async def get_prediction(data: Candidate):
     sample = [[
@@ -70,6 +69,6 @@ async def get_prediction(data: Candidate):
 }
 
 if __name__ == '__main__':
-    uvicorn.run(app, port = 3000, host = "0.0.0.0")
+    uvicorn.run(app, port = 3000, host = "0.0.0.1")
 
 

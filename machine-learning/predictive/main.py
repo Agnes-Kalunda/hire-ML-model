@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.metrics import classification_report
-
+import pickle
 
 dataset = pd.read_csv('hirable.csv')
 
@@ -81,4 +81,11 @@ print("Classification Report RF:\n",classification_report(y_test,y_pred))
 
 
 
+#saving model for later use in prod.
 
+pickle.dump(model, open("hireable.pkl", "wb"))
+
+#loading model
+loaded_model = pickle.load(open("hireable.pkl", "rb"))
+result = loaded_model.score(X_test, y_test)
+print(result)

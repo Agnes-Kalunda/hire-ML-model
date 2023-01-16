@@ -49,7 +49,6 @@ def read_root():
 @app.post("/prediction/")
 
 async def get_prediction(data: Candidate):
-
     sample = [[
         data.gender,
         data.bsc,
@@ -57,3 +56,20 @@ async def get_prediction(data: Candidate):
         data.etest_p,
         data.msc
     ]]
+
+    hired = model.predict(sample).tolist()[0]
+
+    return{
+       "data":{
+            'prediction': hired,
+            'interpretation': ' Candidate can be hired.' if hired == 1 else "Candidate cannot be hired.Sorry."
+
+
+
+    }
+}
+
+if __name__ == '__main__':
+    uvicorn.run(app, port = 3000, host = "0.0.0.0")
+
+

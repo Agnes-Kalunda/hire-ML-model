@@ -28,3 +28,11 @@ app.add_middleware(
 #loading model
 
 model = pickle.load(open("../model/hireable.pkl", "rb"))
+
+#defining class
+class Candidate(BaseModel):
+    gender : int
+    bsc: float
+    workex: int
+    etest_p: float
+    msc: float
